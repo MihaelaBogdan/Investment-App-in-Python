@@ -32,17 +32,17 @@ def export_to_excel(df, report_dir, future_df=None, figure=None):
     sheet = workbook.active
     sheet.title = "Date Acțiuni"
 
-    # Export date
+    
     for r in dataframe_to_rows(df, index=True, header=True):
         sheet.append(r)
 
-    # Export date predictie
+    
     if future_df is not None and not future_df.empty:
         sheet_future = workbook.create_sheet(title="Predicții")
         for r in dataframe_to_rows(future_df, index=True, header=True):
             sheet_future.append(r)
 
-    # grafic ca imagine
+    
     if figure:
         try:
             img = BytesIO()
@@ -53,7 +53,7 @@ def export_to_excel(df, report_dir, future_df=None, figure=None):
         except Exception as e:
             raise RuntimeError(f"Nu s-a putut adăuga imaginea în fișierul Excel: {e}")
 
-    # salvare excel
+    
     try:
         workbook.save(filename)
         return filename
