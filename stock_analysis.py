@@ -25,11 +25,11 @@ class Stock:
     def calculate_percent_change(self, stock_data):
         previous_close = stock_data.info.get('previousClose')
         day_high = stock_data.info.get('dayHigh')
-        day_low = stock_data.info.get('dayLow')  # Pentru scădere
+        day_low = stock_data.info.get('dayLow')  
 
         if previous_close and day_high and day_low:
             change_high = (day_high / previous_close - 1) * 100
-            change_low = (day_low / previous_close - 1) * 100  # Calculați schimbarea minimă
+            change_low = (day_low / previous_close - 1) * 100  
             self.percent_change_today = change_high if change_high >= 0 else change_low
         else:
             self.percent_change_today = None
